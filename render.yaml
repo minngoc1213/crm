@@ -1,0 +1,42 @@
+services:
+  - type: web
+    name: espocrm
+    env: docker
+    dockerfilePath: ./Dockerfile
+    buildCommand: ""  # Không cần nếu Dockerfile lo hết rồi
+    startCommand: ""  # Dùng CMD trong Dockerfile
+    plan: free
+    envVars:
+      - key: ESPOCRM_DATABASE_HOST
+        value: espocrm-db
+      - key: ESPOCRM_DATABASE_USER
+        value: espocrm
+      - key: ESPOCRM_DATABASE_PASSWORD
+        value: database_password
+
+  - type: private-service
+    name: espocrm-daemon
+    env: docker
+    dockerfilePath: ./Dockerfile.daemon
+    plan: free
+
+  - type: private-service
+    name: espocrm-websocket
+    env: docker
+    dockerfilePath: ./Dockerfile.websocket
+    plan: free
+
+  - type: private-service
+    name: espocrm-db
+    env: docker
+    image: mariadb:latest
+    plan: free
+    envVars:
+      - key: MARIADB_ROOT_PASSWORD
+        value: root_password
+      - key: MARIADB_DATABASE
+        value: espocrm
+      - key: MARIADB_USER
+        value: espocrm
+      - key: MARIADB_PASSWORD
+        value: database_password

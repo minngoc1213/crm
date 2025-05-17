@@ -1,0 +1,19 @@
+# Dockerfile.websocket
+FROM php:8.2-cli
+
+# Cài extensions
+RUN apt-get update && apt-get install -y \
+    libpng-dev libjpeg-dev libonig-dev libxml2-dev zip unzip git libzip-dev mariadb-client \
+    && docker-php-ext-install pdo_mysql mysqli gd zip
+
+COPY ./src /var/www/html/
+WORKDIR /var/www/html
+
+# Add WebSocket script (giả sử bạn đã có file `websocket-server.php`)
+RUN chown -R www-data:www-data /var/www/html \
+    && chmod -R 755 /var/www/html
+
+# Expose port WebSocket nếu cần
+EXPOSE 8080
+
+CMD ["php", "websocket-server.php"]
