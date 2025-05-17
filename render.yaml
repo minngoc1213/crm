@@ -8,11 +8,15 @@ services:
     plan: free
     envVars:
       - key: ESPOCRM_DATABASE_HOST
-        value: espocrm-db
+        value: postgresql://espocrm:rcWzk5XYokO8SxvNuuqqNvWY6HPS8ViH@dpg-d0kcj0t6ubrc73b6ehs0-a/espocrm_mkpn
       - key: ESPOCRM_DATABASE_USER
         value: espocrm
       - key: ESPOCRM_DATABASE_PASSWORD
-        value: database_password
+        value: rcWzk5XYokO8SxvNuuqqNvWY6HPS8ViH
+      - key: ESPOCRM_DATABASE_NAME
+        value: espocrm_mkpn
+      - key: ESPOCRM_DATABASE_PORT
+        value: 5432
 
   - type: private-service
     name: espocrm-daemon
@@ -40,3 +44,7 @@ services:
         value: espocrm
       - key: MARIADB_PASSWORD
         value: database_password
+    disk:
+      name: espocrm-db-data
+      mountPath: /var/lib/mysql
+      sizeGB: 1
