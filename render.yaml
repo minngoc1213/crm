@@ -8,7 +8,7 @@ services:
     plan: free
     envVars:
       - key: ESPOCRM_DATABASE_HOST
-        value: postgresql://espocrm:rcWzk5XYokO8SxvNuuqqNvWY6HPS8ViH@dpg-d0kcj0t6ubrc73b6ehs0-a/espocrm_mkpn
+        value: dpg-d0kcj0t6ubrc73b6ehs0-a
       - key: ESPOCRM_DATABASE_USER
         value: espocrm
       - key: ESPOCRM_DATABASE_PASSWORD
@@ -29,22 +29,3 @@ services:
     env: docker
     dockerfilePath: ./Dockerfile.websocket
     plan: free
-
-  - type: private-service
-    name: espocrm-db
-    env: docker
-    image: mariadb:latest
-    plan: free
-    envVars:
-      - key: MARIADB_ROOT_PASSWORD
-        value: root_password
-      - key: MARIADB_DATABASE
-        value: espocrm
-      - key: MARIADB_USER
-        value: espocrm
-      - key: MARIADB_PASSWORD
-        value: database_password
-    disk:
-      name: espocrm-db-data
-      mountPath: /var/lib/mysql
-      sizeGB: 1
