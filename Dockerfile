@@ -4,7 +4,7 @@ FROM php:8.2-apache
 # Cài extensions cần thiết
 RUN apt-get update && apt-get install -y \
     libpq-dev libpng-dev libjpeg-dev libonig-dev libxml2-dev zip unzip git libzip-dev \
-    && docker-php-ext-install pdo pdo_pgsql gd zip
+    && docker-php-ext-install pdo pdo_pgsql pdo_mysql gd zip
 
 # Enable Apache mod_rewrite
 RUN a2enmod rewrite
