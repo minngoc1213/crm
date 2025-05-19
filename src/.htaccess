@@ -32,6 +32,9 @@ Options -Indexes
     RewriteCond %{DOCUMENT_ROOT}/%{ENV:BASE}/public/$1 -d
     RewriteRule ^(.*?[^/])$ %{REQUEST_URI}/ [L,R=301,NE]
 
+    # Rewrite API requests for ExternalAccount
+    RewriteRule ^ExternalAccount/(.*)$ %{ENV:BASE}/public/index.php [L]
+
     # Rewrite to `public` dir.
     RewriteRule ^((?!public/).*)$ %{ENV:BASE}/public/$1 [L,NC]
 
