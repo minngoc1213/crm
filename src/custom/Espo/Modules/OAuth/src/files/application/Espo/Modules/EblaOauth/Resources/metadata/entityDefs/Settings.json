@@ -1,0 +1,16 @@
+{
+    "fields": {
+        "oAuthProviders": {
+            "type": "multiEnum",
+            "required": true,
+            "isSorted": true,
+            "global": true,
+            "view": "ebla-oauth:views/settings/fields/oauth-provider"
+        },
+        "oAuthEnforceLogin": {
+            "type": "bool",
+            "global": true,
+            "default": false
+        }
+    }
+}

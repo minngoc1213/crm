@@ -1,0 +1,6 @@
+{
+    "fields": {
+        "oAuthProviders": "OAuth Providers",
+        "oAuthEnforceLogin": "Enforce OAuth Login"
+    }
+}
